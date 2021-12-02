@@ -1,16 +1,32 @@
-#Produces drills to do for golf practice
-
 import random
 
 #Greeting - opening prompts to get info about user
+handicap = 0
 def greeting():
 	name = input("Hi! Please enter your name: ")
 	print("\nThank you, " + name + "! What is your golf handicap? (If you are a + handicap, please enter it as a negative, i.e. \"-4\"")
+	handicap = input("\nHandicap: ")
 	handicap = int(input("\nHandicap: "))
 	print("\nOk that's great. Let's find some drills for you.")
 	improvement = input("\nEnter what part of your game you would like to improve the most, putting, short game, or long game: ")
+	determine_skill_area(improvement)
 	determine_skill_area(improvement, handicap)
 
+def determine_skill_area(improvement):
+	if type(improvement) is str:
+		improvement_lower = improvement.lower()
+	if improvement_lower == 'putting':
+		print('\nOk. Here is a list of putting drills you can do: ')
+		#call here
+	elif improvement_lower == 'short game':
+		print('\nOk. Here is a list of short game drills you can do: ')
+		#call here
+	elif improvement_lower == 'long game':
+		print('\nOk. Here is a list of driving range drills you can do: \n')
+		#call here
+	else:
+		print('\nPlease enter one of the following options: putting, short game, long game.')
+		determine_skill_area(input('>'))
 #Do I need classes? putting, short game and long game are all similar and do similar things... I could use a class here.
 def putting(handicap):
 	print('')
@@ -82,8 +98,17 @@ def determine_skill_area(improvement, handicap):
 		print('\nThat\'s not an option! Please try again. Enter what part of your game you would like to improve the most, putting, short game, or long game:\n')
 		determine_skill_area(input('>'), handicap)
 
+class Drill:
+	def __init__(self, name, skill_area):
+		self.name = name
+		self.skill_area = skill_area
+
+#lass Putting(Drill):
+
+# Hi Lela, I am going to show you how to save this
 
 greeting()
+drill1 = Drill('Putterbreaker', 'Putting')
 print('\nThanks for using the Golf Drill Generator. Good Luck!')
 # class Drill:
 # 	def __init__(self, name, description):
